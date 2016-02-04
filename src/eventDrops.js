@@ -2,7 +2,7 @@
 "use strict";
 /* global require, define, module */
 
-var eventDrops = require('./eventDrops.js');
+var eventDrops = require('./eventDrops');
 
 if (typeof define === "function" && define.amd) {
   define('d3.chart.eventDrops', ["d3"], function (d3) {
@@ -16,11 +16,11 @@ if (typeof define === "function" && define.amd) {
   module.exports = eventDrops;
 }
 
-},{"./eventDrops.js":3}],2:[function(require,module,exports){
+},{"./eventDrops":3}],2:[function(require,module,exports){
 "use strict";
 /* global require, module, d3 */
 
-var configurable = require('./util/configurable.js');
+var configurable = require('./util/configurable');
 
 var defaultConfig = {
   xScale: null,
@@ -68,15 +68,15 @@ module.exports = function (d3) {
   };
 };
 
-},{"./util/configurable.js":6}],3:[function(require,module,exports){
+},{"./util/configurable":6}],3:[function(require,module,exports){
 "use strict";
 /* global require, module */
 
-var configurable = require('./util/configurable.js');
+var configurable = require('./util/configurable');
 
 module.exports = function (d3) {
-  var eventLine = require('./eventLine.js')(d3);
-  var delimiter = require('./delimiter.js')(d3);
+  var eventLine = require('./eventLine')(d3);
+  var delimiter = require('./delimiter')(d3);
 
   var defaultConfig = {
     start: new Date(0),
@@ -317,12 +317,12 @@ module.exports = function (d3) {
   };
 };
 
-},{"./delimiter.js":2,"./eventLine.js":4,"./util/configurable.js":6}],4:[function(require,module,exports){
+},{"./delimiter":2,"./eventLine":4,"./util/configurable":6}],4:[function(require,module,exports){
 "use strict";
 /* global require, module, d3 */
 
-var configurable = require('./util/configurable.js');
-var filterData = require('./filterData.js');
+var configurable = require('./util/configurable');
+var filterData = require('./filterData');
 
 var defaultConfig = {
   xScale: null
@@ -382,7 +382,7 @@ module.exports = function (d3) {
   };
 };
 
-},{"./filterData.js":5,"./util/configurable.js":6}],5:[function(require,module,exports){
+},{"./filterData":5,"./util/configurable":6}],5:[function(require,module,exports){
 "use strict";
 /* global module */
 
