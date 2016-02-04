@@ -12,7 +12,7 @@ var source = require('vinyl-source-stream');
 
 function bundle(watching, done, minify) {
     var bundler, rebundle;
-    var uglify = typeof minify === 'undefined' ? true : minify;
+    var doMinify = typeof minify === 'undefined' ? true : minify;
 
     bundler = browserify('./lib/main.js', {
         basedir: __dirname,
@@ -32,8 +32,8 @@ function bundle(watching, done, minify) {
         });
         stream = stream.pipe(source('eventDrops.js'));
         try {
-            if (!watching && uglify) {
-                stream.pipe(streamify(uglify()));
+            if (!watching && doMinify) {
+                stream.pipe(uglify());
             }
             stream.pipe(gulp.dest('./src/'));
         } catch (e) {
