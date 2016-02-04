@@ -10,8 +10,9 @@ var streamify = require('gulp-streamify');
 var karma = require('karma').server;
 var source = require('vinyl-source-stream');
 
-function bundle(watching, done) {
+function bundle(watching, done, minify) {
     var bundler, rebundle;
+    var uglify = typeof minify === 'undefined' ? true : minify;
 
     bundler = browserify('./lib/main.js', {
         basedir: __dirname,
@@ -31,8 +32,7 @@ function bundle(watching, done) {
         });
         stream = stream.pipe(source('eventDrops.js'));
         try {
-
-            if (!watching) {
+            if (!watching && uglify) {
                 stream.pipe(streamify(uglify()));
             }
             stream.pipe(gulp.dest('./src/'));
@@ -54,6 +54,10 @@ function bundle(watching, done) {
 
 gulp.task('browserify', function (done) {
     return bundle(false, done);
+});
+
+gulp.task('build', function (done) {
+    return bundle(false, function(){}, false);
 });
 
 gulp.task('watch', function () {
