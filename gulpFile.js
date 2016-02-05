@@ -56,8 +56,12 @@ gulp.task('browserify', function (done) {
     return bundle(false, done);
 });
 
-gulp.task('build', function (done) {
+gulp.task('buildDist', function (done) {
     return bundle(false, function(){}, true);
+});
+
+gulp.task('buildDev', function (done) {
+    return bundle(false, function(){}, false);
 });
 
 gulp.task('watch', function () {
