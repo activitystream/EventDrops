@@ -33,7 +33,7 @@ function bundle(watching, done, minify) {
         stream = stream.pipe(source('eventDrops.js'));
         try {
             if (!watching && doMinify) {
-                stream.pipe(uglify());
+                stream.pipe(streamify(uglify()));
             }
             stream.pipe(gulp.dest('./src/'));
         } catch (e) {
@@ -57,7 +57,7 @@ gulp.task('browserify', function (done) {
 });
 
 gulp.task('build', function (done) {
-    return bundle(false, function(){}, false);
+    return bundle(false, function(){}, true);
 });
 
 gulp.task('watch', function () {
